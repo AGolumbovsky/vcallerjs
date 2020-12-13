@@ -11,5 +11,5 @@ var currentDate = new Date();
 var timestamp = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
 
 app.listen(PORT, () => {
-    console.log("vcaller REST API is running, timestamp: " + PORT + "\n" + timestamp);
+    console.log("vcaller REST API is running on port : " + PORT + "\n" + "timestamp " + timestamp);
 });
