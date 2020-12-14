@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require('fs');
+const https = require('https');
 
 const app = express();
 
@@ -19,7 +21,18 @@ app.delete('/api/delete', function(req, res) {
 
 var currentDate = new Date();
 var timestamp = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-const PORT = process.env.PORT || 8787;
-app.listen(PORT, () => {
-    console.log("vcaller REST API is running on port : " + PORT + "\n" + "timestamp " + timestamp);
-});
+
+
+// const PORT = process.env.PORT || 8787;
+// app.listen(PORT, () => {
+//     console.log("vcaller REST API is running on port : " + PORT + "\n" + "timestamp " + timestamp);
+// });
+
+const httpsPort = 8787;
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, app)
+  .listen(httpsPort, () => {
+    console.log("vcaller https listening on port:", httpsPort);
+  })
