@@ -33,8 +33,10 @@ var timestamp = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + 
 
 const httpsPort = 8787;
 https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
+    // key: fs.readFileSync('server.key'),
+    // cert: fs.readFileSync('server.cert')
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
   }, app)
   .listen(httpsPort, () => {
     console.log("vcaller https listening on port:", httpsPort);
